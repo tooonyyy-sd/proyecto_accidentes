@@ -4,39 +4,38 @@ import pandas as pd
 import numpy as np
 
 
-##RESPONDER A LA VISION GLOBAL
-#Objetivo: ¿Cómo se distribuyen los accidentes (entre "accidentes con víctimas" y "accidentes mortales") y los heridos (segun "heridos hospitalizados" y "heridos no hospitalizados")?
-# Seleccionamos las columnas relevantes del total mensual (fila 'Total')
-cols_accidentes = [col for col in df3.columns if "TOTAL" in col]
-cols_mortales = [col for col in df3.columns if "MORTALES A 30 DÍAS" in col]
-cols_heridos_hosp = [col for col in df3.columns if "HERIDOS HOSPITALIZADOS" in col]
-cols_heridos_nohosp = [col for col in df3.columns if "HERIDOS NO HOSPITALIZADOS" in col]
+## Visualization of df1:
+def vision_global_accidentes_heridos(df1):
+    """
+    Muestra por pantalla el total de:
+      - Accidentes con víctimas
+      - Accidentes mortales
+      - Heridos hospitalizados
+      - Heridos no hospitalizados
+    y dibuja un gráfico de barras con la misma distribución.
+    """
+    # Cálculo de totales
+    totales = {
+        'Accidentes con víctimas': df1['ACCIDENTES CON\nVÍCTIMAS'].sum(),
+        'Accidentes mortales': df1['ACCIDENTES\nMORTALES'].sum(),
+        'Heridos hospitalizados': df1['HERIDOS\nHOSPITALIZADOS'].sum(),
+        'Heridos no hospitalizados': df1['HERIDOS NO\nHOSPITALIZADOS'].sum()
+    }
+    # Imprimir totales
+    for nombre, valor in totales.items():
+        print(f"{nombre}: {valor}")
+    # Gráfico
+    sns.set_style('darkgrid')
+    plt.figure(figsize=(10, 6))
+    sns.barplot(x=list(totales.keys()), y=list(totales.values()))
+    plt.title("Distribución de accidentes y heridos")
+    plt.ylabel("Cantidad")
+    plt.xticks(rotation=20, ha='right')
+    plt.tight_layout()
+    plt.show()
 
-# Extraemos los totales de la fila 'Total'
-totales = df3.loc["Total"]
+vision_global_accidentes_heridos(df1)
 
-# Sumamos los valores de cada grupo
-accidentes_victimas = totales[cols_accidentes].sum()
-accidentes_mortales = totales[cols_mortales].sum()
-heridos_hospitalizados = totales[cols_heridos_hosp].sum()
-heridos_no_hospitalizados = totales[cols_heridos_nohosp].sum()
-
-# Mostramos la distribución
-print("Accidentes con víctimas:", accidentes_victimas)
-print("Accidentes mortales:", accidentes_mortales)
-print("Heridos hospitalizados:", heridos_hospitalizados)
-print("Heridos no hospitalizados:", heridos_no_hospitalizados)
-
-# Visualización
-labels = ['Accidentes con víctimas', 'Accidentes mortales', 'Heridos hospitalizados', 'Heridos no hospitalizados']
-values = [accidentes_victimas, accidentes_mortales, heridos_hospitalizados, heridos_no_hospitalizados]
-
-plt.figure(figsize=(8,5))
-sns.barplot(x=labels, y=values)
-plt.title("Distribución de accidentes y heridos")
-plt.ylabel("Cantidad")
-plt.xticks(rotation=20)
-plt.show()
 
 
 
