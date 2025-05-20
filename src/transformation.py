@@ -1,4 +1,5 @@
-def agregar_total_victimas(df):
+## Transformation in df1:
+def agregar_total_victimas(df1):
     """
     Agrega una columna 'total_de_victimas' al DataFrame sumando solo las columnas relevantes de víctimas.
     """
@@ -10,15 +11,11 @@ def agregar_total_victimas(df):
         'HERIDOS NO\nHOSPITALIZADOS'
     ]
     # Solo suma las columnas que existen en el DataFrame
-    columnas_existentes = [col for col in columnas_sumar if col in df.columns]
-    df['total_de_victimas'] = df[columnas_existentes].sum(axis=1)
-    return df
+    columnas_existentes = [col for col in columnas_sumar if col in df1.columns]
+    df1['total_de_victimas'] = df1[columnas_existentes].sum(axis=1)
+    return df1
 
-# Ejemplo de uso:
-df1 = agregar_total_victimas(df1)
-df1.head()
-
-
+## Transformation in df2:
 def calcular_porcentajes_victimas(df2):
     """
     Calcula el porcentaje de cada subcolumna de Conductor, Pasajero y Peatón respecto a Total,
@@ -44,14 +41,14 @@ def calcular_porcentajes_victimas(df2):
 df2_porcentajes = calcular_porcentajes_victimas(df2)
 df2_porcentajes.head()
 
-
-def agrupar_por_franja_horaria(df, franjas):
+## Transformation of df4:
+def agrupar_por_franja_horaria(df4, franjas):
     """
     Agrupa y suma los valores de un DataFrame por las franjas horarias definidas en el diccionario 'franjas'.
     Devuelve un nuevo DataFrame con las franjas como índice.
     """
     df_franjas = pd.DataFrame([
-        df.loc[horas].sum() for horas in franjas.values()
+        df4.loc[horas].sum() for horas in franjas.values()
     ], index=franjas.keys())
     return df_franjas
 
@@ -66,7 +63,7 @@ franjas = {
 df4_franjas = agrupar_por_franja_horaria(df4, franjas)
 df4_franjas
 
-
+## Transformation of df5:
 def agrupar_columnas_df5(df5):
     """
     Agrupa las columnas de df5 según las categorías solicitadas y devuelve un nuevo DataFrame con las columnas agrupadas.
