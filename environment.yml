@@ -66,13 +66,10 @@ dependencies:
       - jupyter-client==8.6.3
       - jupyter-console==6.6.3
       - jupyter-core==5.7.2
-      - jupyter-events==0.12.0
       - jupyter-lsp==2.2.5
       - jupyter-server==2.16.0
-      - jupyter-server-terminals==0.5.3
       - jupyterlab==4.4.2
       - jupyterlab-pygments==0.3.0
-      - jupyterlab-server==2.27.3
       - jupyterlab-widgets==3.0.15
       - kiwisolver==1.4.8
       - markupsafe==3.0.2
@@ -96,7 +93,6 @@ dependencies:
       - pillow==11.2.1
       - pipreqs==0.5.0
       - platformdirs==4.3.8
-      - prometheus-client==0.21.1
       - prompt-toolkit==3.0.51
       - psutil==7.0.0
       - pure-eval==0.2.3
@@ -111,10 +107,12 @@ dependencies:
       - pyyaml==6.0.2
       - pyzmq==26.4.0
       - referencing==0.36.2
+      - reqs==0.0.2
       - requests==2.32.3
       - rfc3339-validator==0.1.4
       - rfc3986-validator==0.1.1
       - rpds-py==0.24.0
+      - scipy==1.15.3
       - seaborn==0.13.2
       - send2trash==1.8.3
       - six==1.17.0
