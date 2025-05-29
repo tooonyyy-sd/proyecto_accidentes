@@ -3,11 +3,9 @@ import matplotlib.pyplot as plt
 import pandas as pd
 import numpy as np
 
-## Transformation in df1:
+## Transformacion de df1:
 def agregar_total_victimas(df1):
-    """
-    Agrega una columna 'total_de_victimas' al DataFrame sumando solo las columnas relevantes de víctimas.
-    """
+    
     columnas_sumar = [
         'ACCIDENTES CON\nVÍCTIMAS',
         'ACCIDENTES\nMORTALES',
@@ -15,12 +13,12 @@ def agregar_total_victimas(df1):
         'HERIDOS\nHOSPITALIZADOS',
         'HERIDOS NO\nHOSPITALIZADOS'
     ]
-    # Solo suma las columnas que existen en el DataFrame
+    
     columnas_existentes = [col for col in columnas_sumar if col in df1.columns]
     df1['total_de_victimas'] = df1[columnas_existentes].sum(axis=1)
     return df1
 
-## Transformation in df2:
+## Transformacion de df2:
 # Definicion df2
 
 ruta2 = '../data/processed/victimas_segun_medio_trans.xlsx'
@@ -36,10 +34,7 @@ df2.columns.names = ['Categoría', 'Métrica']
 
 #Funcion df2
 def calcular_porcentajes_victimas(df2):
-    """
-    Calcula el porcentaje de cada subcolumna de Conductor, Pasajero y Peatón respecto a Total,
-    para las subcolumnas especificadas. Devuelve un DataFrame con los porcentajes redondeados a 2 decimales.
-    """
+    
     columnas = ['Total', 'Conductor', 'Pasajero', 'Peatón']
     subcolumnas = ['Nº implicados', 'VÍCTIMAS', 'FALLECIDOS', 'HOSPITALIZADOS', 'NO\nHOSPITALIZADOS']
 
@@ -56,11 +51,11 @@ def calcular_porcentajes_victimas(df2):
     df2_porcentajes = df_porcentajes.round(2)
     return df2_porcentajes
 
-# Ejemplo de uso:
+
 df2_porcentajes = calcular_porcentajes_victimas(df2)
 df2_porcentajes.head()
 
-## Transformation of df4:
+## Transformacion de df4:
 #Definicion df4
 
 ruta4 = '../data/processed/con_victimas_hora_inter.xlsx'
@@ -76,10 +71,7 @@ df4.columns = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 
 
 #Funcion df4
 def agrupar_por_franja_horaria(df4, franjas):
-    """
-    Agrupa y suma los valores de un DataFrame por las franjas horarias definidas en el diccionario 'franjas'.
-    Devuelve un nuevo DataFrame con las franjas como índice.
-    """
+   
     df_franjas = pd.DataFrame([
         df4.loc[horas].sum() for horas in franjas.values()
     ], index=franjas.keys())
@@ -96,7 +88,7 @@ franjas = {
 df4_franjas = agrupar_por_franja_horaria(df4, franjas)
 df4_franjas
 
-## Transformation of df5:
+## Transformacion de df5:
 #Definicion df5
 ruta5 = '../data/processed/infracc_inter.xlsx'
 df5 = pd.read_excel(
@@ -111,9 +103,7 @@ df5.columns.name = 'Vehículo'
 
 #Funcion df5
 def agrupar_columnas_df5(df5):
-    """
-    Agrupa las columnas de df5 según las categorías solicitadas y devuelve un nuevo DataFrame con las columnas agrupadas.
-    """
+    
     df5_agrupado = pd.DataFrame({
         'Total': df5['Total'],
         'Sin motor': df5['Bicicleta'] + df5['VMP'],
@@ -124,7 +114,7 @@ def agrupar_columnas_df5(df5):
     })
     return df5_agrupado
 
-# Ejemplo de uso:
+
 df5_agrupado_columnas = agrupar_columnas_df5(df5)
 df5_agrupado_columnas.head()
 

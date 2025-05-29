@@ -4,18 +4,11 @@ import pandas as pd
 import numpy as np
 
 
-## Visualization of df1:
+## Visualizacion df1:
 df1 = pd.read_excel('../data/processed/accidentes_victimas_comun_auton.xlsx')
 def vision_global_accidentes_heridos(df1):
     
-    """
-    Muestra por pantalla el total de:
-      - Accidentes con víctimas
-      - Accidentes mortales
-      - Heridos hospitalizados
-      - Heridos no hospitalizados
-    y dibuja un gráfico de barras con la misma distribución.
-    """
+
     # Cálculo de totales
     totales = {
         'Accidentes con víctimas': df1['ACCIDENTES CON\nVÍCTIMAS'].sum(),
@@ -37,15 +30,13 @@ def vision_global_accidentes_heridos(df1):
     plt.savefig('../images/vision_global_accidentes_heridos.png')
     plt.show()
 
-# Asegúrate de que df1 esté definido antes de llamar a la función
-# Por ejemplo, descomenta y ajusta la siguiente línea según la ruta y formato de tu archivo:
-# df1 = pd.read_csv('../data/df1.csv')
+
 
 vision_global_accidentes_heridos(df1)
 
 
 
-## Visualization of df3:
+## Visualizacion df3:
 # Definir df3:
 ruta3 = '../data/processed/victimas_dias_mes.xlsx'
 
@@ -60,10 +51,7 @@ df3.columns.names = ['Mes', 'Tipo']
 
 # Funcion 
 def visualizar_victimas_por_mes(df3):
-    """
-    Visualiza el total de víctimas por mes usando el valor de la última fila
-    de la subcolumna 'Total' de cada mes.
-    """
+    
     # Encuentra todas las columnas cuyo segundo nivel contenga 'total'
     total_cols = [col for col in df3.columns if 'total' in str(col[1]).lower()]
     # Diccionario para almacenar el total de cada mes
@@ -93,5 +81,5 @@ def visualizar_victimas_por_mes(df3):
 
     return victimas_por_mes
 
-# Ejemplo de uso:
+
 visualizar_victimas_por_mes(df3)

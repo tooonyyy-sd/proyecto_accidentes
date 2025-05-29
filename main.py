@@ -6,6 +6,7 @@ import numpy as np
 import src.exploration as exp
 import src.visualization as vis
 import src.transformation as ts
+import src.estadis as estad
 
 
 
@@ -27,8 +28,8 @@ df2.index.name = 'CLASES DE USUARIOS'
 df2.columns.names = ['Categoría', 'Métrica']
 df3 = pd.read_excel(
     ruta3,
-    header=[0, 1],      # Dos filas de encabezado para MultiIndex
-    index_col=0,        # La primera columna será el índice (Día del mes)
+    header=[0, 1],      
+    index_col=0,        
     engine='openpyxl'
 )
 
@@ -76,3 +77,9 @@ if __name__ == "__main__":
 
     vis.vision_global_accidentes_heridos(df1)
     vis.visualizar_victimas_por_mes(df3)
+
+
+##ESTADISTICA
+if __name__ == "__main__":
+    estad.descriptive_stats_df1(df1)
+    estad.graficos_descriptivos_df1(df1)
